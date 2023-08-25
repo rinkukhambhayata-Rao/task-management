@@ -49,7 +49,7 @@ const loginUser = async (data) => {
                 console.log("login user details ", payload);
                 const token = jwt.sign(payload, "pmt");
                 console.log("Token = ", token);
-                userModel.updateOne({ _id : data.userId }, { $set: { "token": token } });
+                userModel.updateOne({ _id : new mongoose.Types.ObjectId(foundUser._id) }, { $set: { "token": token } });
                 resolve({
                     status: 200,
                     data: foundUser,
